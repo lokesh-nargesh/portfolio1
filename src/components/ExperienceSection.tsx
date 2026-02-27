@@ -5,7 +5,15 @@ import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 const experiences = [
   {
-    role: "Full Stack Developer",
+    role: "Software Developer",
+    company: "Cansvolution",
+    location: "Indore, Madhya Pradesh",
+    duration: "August 2024 - Present",
+    type: "Full-Time",
+    description: "Developing and maintaining scalable web applications using modern frontend and backend technologies. Responsible for API development, database management, and delivering responsive, secure applications aligned with business needs.",
+  },
+  {
+    role: "Full Stack Developer Intern",
     company: "Amstech Training Association Pvt Ltd.",
     location: "Indore, Madhya Pradesh",
     duration: "Oct 2021 - Apr 2022",
@@ -15,7 +23,7 @@ const experiences = [
   {
     role: "Web Developer Intern",
     company: "Spark Foundation",
-    location: "Virtual",
+    location: "Remote",
     duration: "November 2021",
     type: "Part-Time",
     description: "Worked on real-world web development projects, gaining hands-on experience with modern web technologies and collaborative development workflows.",
@@ -23,7 +31,7 @@ const experiences = [
   {
     role: "Frontend Developer Intern",
     company: "Suven Consultant & Technology Pvt Ltd.",
-    location: "Virtual",
+    location: "Remote",
     duration: "October 2021",
     type: "Part-Time",
     description: "Focused on frontend development, creating responsive user interfaces and implementing interactive features using HTML, CSS, and JavaScript.",
@@ -87,7 +95,7 @@ const ExperienceSection = () => {
                       <span className="font-medium">{exp.company}</span>
                     </div>
                     
-                    <div className={`flex flex-wrap gap-4 text-sm text-muted-foreground mb-4 ${index % 2 === 0 ? "md:justify-end" : "justify-start"}`}>
+                    <div className={`flex items-center gap-6 text-sm text-muted-foreground mb-4 whitespace-nowrap ${ index % 2 === 0 ? "md:justify-end" : "justify-start"}`}>
                       <span className="flex items-center gap-1">
                         <Calendar size={14} />
                         {exp.duration}
