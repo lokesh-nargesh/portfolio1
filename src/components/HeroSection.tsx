@@ -8,7 +8,19 @@ const socialLinks = [
   { icon: Mail, href: "mailto:nargeshraj2912@gmail.com", label: "Email" },
 ];
 
+const scrollToSection = (href: string) => {
+  const id = href.replace("#", "");
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const HeroSection = () => {
+  const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    scrollToSection(href);
+  };
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       {/* Background Grid */}
@@ -91,6 +103,7 @@ const HeroSection = () => {
             >
               <motion.a
                 href="#projects"
+                onClick={(e) => handleScrollClick(e, "#projects")}
                 className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:glow-primary"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -99,6 +112,7 @@ const HeroSection = () => {
               </motion.a>
               <motion.a
                 href="#contact"
+                onClick={(e) => handleScrollClick(e, "#contact")}
                 className="px-8 py-3 rounded-full border border-border text-foreground font-medium transition-all duration-300 hover:border-primary hover:text-primary"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -135,7 +149,11 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: [0, 10, 0] }}
           transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
         >
-          <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+          <a 
+            href="#about" 
+            onClick={(e) => handleScrollClick(e, "#about")}
+            className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+          >
             <span className="text-sm">Scroll Down</span>
             <ArrowDown size={20} />
           </a>

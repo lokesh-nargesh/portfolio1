@@ -10,17 +10,46 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ];
 
+const scrollToSection = (href: string) => {
+  // Remove the # from the href
+  const id = href.replace("#", "");
+  const element = document.getElementById(id);
+  
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#");
 
   useEffect(() => {
+    // Scroll detection for navbar shadow
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Update active section based on scroll position
+      let currentSection = "#";
+      navItems.forEach((item) => {
+        const section = document.querySelector(item.href);
+        if (section && window.scrollY >= section.scrollTop - 100) {
+          currentSection = item.href;
+        }
+      });
+      setActiveSection(currentSection);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    scrollToSection(href);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <motion.nav
@@ -34,6 +63,10 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <motion.a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           className="text-2xl font-display font-bold gradient-text"
           whileHover={{ scale: 1.05 }}
         >
@@ -46,7 +79,10 @@ const Navbar = () => {
             <motion.a
               key={item.name}
               href={item.href}
-              className="nav-link"
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={`nav-link transition-colors ${
+                activeSection === item.href ? "text-primary" : "text-foreground"
+              }`}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -56,6 +92,7 @@ const Navbar = () => {
           ))}
           <motion.a
             href="#contact"
+            onClick={(e) => handleNavClick(e, "#contact")}
             className="ml-4 px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:glow-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -85,16 +122,18 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-muted-foreground hover:text-primary transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`text-muted-foreground hover:text-primary transition-colors ${
+                  activeSection === item.href ? "text-primary" : ""
+                }`}
               >
                 {item.name}
               </a>
             ))}
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
               className="px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               Hire Me
             </a>
