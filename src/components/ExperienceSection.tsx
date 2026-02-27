@@ -95,7 +95,7 @@ const ExperienceSection = () => {
                       <span className="font-medium">{exp.company}</span>
                     </div>
                     
-                    <div className={`flex items-center gap-6 text-sm text-muted-foreground mb-4 whitespace-nowrap ${ index % 2 === 0 ? "md:justify-end" : "justify-start"}`}>
+                    <div className={`flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4 ${index % 2 === 0 ? "justify-start md:justify-end" : "justify-start"}`}>
                       <span className="flex items-center gap-1">
                         <Calendar size={14} />
                         {exp.duration}
