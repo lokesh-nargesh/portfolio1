@@ -56,7 +56,7 @@ const HeroSection = () => {
             >
               <span className="gradient-text">Lokesh</span>
               <br />
-              <span className="text-foreground">Naresh</span>
+              <span className="text-foreground">Nargesh</span>
             </motion.h1>
 
             <motion.p
@@ -134,7 +134,7 @@ const HeroSection = () => {
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 glass-card">
                 <img
                   src="https://cdn.dorik.com/61f362d71ef20c00110748eb/639eb4b960d623001182bf5b/images/Lokesh_qumbsmnr.jpg"
-                  alt="Lokesh Naresh"
+                  alt="Lokesh Nargesh"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -13,7 +13,7 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
           >
             Crafted with <Heart size={14} className="text-primary fill-primary" /> by{" "}
-            <span className="text-foreground font-medium">Lokesh Naresh</span>
+            <span className="text-foreground font-medium">Lokesh Nargesh</span>
           </motion.p>
           
           <motion.p
